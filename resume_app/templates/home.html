@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume Extractor</title>
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data" id="uploadForm">
+        {% csrf_token %}
+        <input type="file" name="resume_files" id="fileInput" accept=".pdf" multiple onchange="displaySelectedFiles()">
+        <button type="submit">Upload Resumes</button>
+    </form>
+    <div id="selectedFiles"></div>
+
+    <script>
+        function displaySelectedFiles() {
+            const fileInput = document.getElementById('fileInput');
+            const selectedFilesDiv = document.getElementById('selectedFiles');
+            selectedFilesDiv.innerHTML = '';
+
+            for (let i = 0; i < fileInput.files.length; i++) {
+                const fileName = fileInput.files[i].name;
+                const fileDiv = document.createElement('div');
+                fileDiv.textContent = fileName;
+                selectedFilesDiv.appendChild(fileDiv);
+            }
+        }
+    </script>
+</body>
+</html>
