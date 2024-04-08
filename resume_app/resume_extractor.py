@@ -4,15 +4,7 @@ from openpyxl import Workbook
 import os
 
 def extract_text_from_pdf(pdf_file):
-    """
-    Extracts text from a PDF file.
-
-    Args:
-        pdf_file (str): Path to the PDF file.
-
-    Returns:
-        str: Extracted text from the PDF.
-    """
+    
     with open(pdf_file, 'rb') as f:
         pdf_reader = PyPDF2.PdfReader(f)
         text = ""
@@ -21,15 +13,7 @@ def extract_text_from_pdf(pdf_file):
     return text.strip()
 
 def extract_text_from_docx(docx_file):
-    """
-    Extracts text from a DOCX file.
-
-    Args:
-        docx_file (str): Path to the DOCX file.
-
-    Returns:
-        str: Extracted text from the DOCX file.
-    """
+    
     document = Document(docx_file)
     text = ""
     for paragraph in document.paragraphs:
@@ -56,13 +40,7 @@ def extract_info(filename):
     }
 
 def create_xlsx(resume_data, output_filename):
-    """
-    Creates an XLSX spreadsheet from extracted information.
-
-    Args:
-        resume_data (list): List of dictionaries containing extracted information.
-        output_filename (str): Path to save the XLSX file.
-    """
+    
     workbook = Workbook()
     worksheet = workbook.active
     worksheet.append(["Filename", "Email ID", "Contact Number", "Text"])
@@ -73,12 +51,7 @@ def create_xlsx(resume_data, output_filename):
     workbook.save(output_filename)
 
 def process_resumes(resume_dir):
-    """
-    Process resumes in the given directory and create an Excel file.
-
-    Args:
-        resume_dir (str): Path to the directory containing PDF resumes.
-    """
+   
     resume_data = []
     for filename in os.listdir(resume_dir):
         if filename.endswith(".pdf"):
